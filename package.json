@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "prod": "ng build --prod",
+    "develop": "ng build  --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:angular-tour-of-heroes": "node dist/angular-tour-of-heroes/server/server.mjs"

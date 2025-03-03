@@ -1,24 +1,56 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                sh 'ls'
-                sh 'npm install'
-                sh 'echo N | ng analytics off'
-                sh 'ng build'
-                sh 'ls'
-                sh 'cd dist && ls'
-                sh 'cd dist/angular-tour-of-heroes/browser && ls'
-            }
+stage("Restore npm packages") {
+    steps {
+        writeFile file: "next-lock.cache", text: "$GIT_COMMIT"
+ 
+        cache(caches: [
+            arbitraryFileCache(
+                path: "node_modules",
+                includes: "**/*",
+                cacheValidityDecidingFile: "package-lock.json"
+            )
+        ]) {
+            sh "npm install"
         }
-        stage('S3 Upload') {
+    }
+}
+
+	 stage('setup') {
+	  parallel { 
             steps {
-                withAWS(region: 'us-east-1', credentials: '8c94fa09-4954-4498-aac9-838d930a9170') {
-                    sh 'ls -la'
-                    sh 'aws s3 cp dist/angular-tour-of-heroes/browser/. s3://sk-jenkins-angular/ --recursive'
-                }
+                sh 'npm install'
             }
+	    steps { 
+		sh 'vagrant plugin install virtualbox_WSL2' 
+		} 
+         } 
+        }
+
+	stage('build') { 
+		steps { 
+			sh 'ng build' 
+		} 
+	} 
+
+	stage('test') { 
+		steps { 
+			echo "in a normal case, setup an env with Chrome browsers etc and run in ||' 
+		} 
+	} 
+	stage ('Deploy Infra') { 
+		steps {
+		sh 'vagrant up' 
+		} 
+	}
+
+	stage ('Deploy infra') { 
+		steps { 
+		sh 'sudo cp -r dist /var/www/html/app' 
+		} 
+	} 
+ 
         }
     }
 }
