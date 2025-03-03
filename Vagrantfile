@@ -20,4 +20,6 @@ Vagrant.configure("2") do |config|
     config.vm.provision "ansible" do |ansible|
         ansible.playbook = "playbook.yml"
     end
+
+    config.vm.provision "file", source: "./dist/angular-tour-of-heroes", destination: "/var/www/html/app"
 end
