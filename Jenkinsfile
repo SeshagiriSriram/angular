@@ -36,7 +36,7 @@ stage("Restore npm packages") {
 
 	stage('test') { 
 		steps { 
-			echo "in a normal case, setup an env with Chrome browsers etc and run in ||' 
+			echo 'in a normal case, setup an env with Chrome browsers etc and run in ||' 
 		} 
 	} 
 	stage ('Deploy Infra') { 
