@@ -19,12 +19,16 @@ stage("Restore npm packages") {
 
 	 stage('setup') {
 	  parallel { 
+	   stage('npm install') { 
             steps {
                 sh 'npm install'
             }
+            } 
+           stage('setup vagrant'){ 
 	    steps { 
 		sh 'vagrant plugin install virtualbox_WSL2' 
 		} 
+           } 
          } 
         }
 
