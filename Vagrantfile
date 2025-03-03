@@ -21,5 +21,6 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "playbook.yml"
     end
 
-    config.vm.provision "file", source: "./dist/angular-tour-of-heroes", destination: "/var/www/html/app"
+    config.vm.provision "file", source: "./dist/angular-tour-of-heroes", destination: "/tmp/app"
+    config.vm.provision "shell", inline: "sudo cp -r /tmp/app /var/www/html" 
 end
