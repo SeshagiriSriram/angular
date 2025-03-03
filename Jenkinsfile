@@ -52,7 +52,7 @@ stage("Restore npm packages") {
 
 	stage ('Deploy App') { 
 		steps { 
-		sh 'vagrant scp  $WORKSPACE/dist/angular-tour-of-heroes/browser webapp:/var/www/html/app'
+		sh 'vagrant scp  $WORKSPACE/dist/angular-tour-of-heroes/browser webapp:/var/www/html'
 		} 
 	} 
  
