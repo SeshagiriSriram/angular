@@ -7,18 +7,17 @@ Vagrant.configure("2") do |config|
     config.vm.provider :virtualbox do |v|
         v.memory = 1024 
         v.linked_clone = true
-        v.name="WebApp"
+        v.name="webpp"
     end
      config.vm.network "private_network", ip: "192.168.56.105"
 
     # VM configuration
-     config.vm.define "WebApp" do |WebApp|
-        WebApp.vm.hostname = "WebApp"
+     config.vm.define "webpp" do |webapp|
+        webapp.vm.hostname = "webpp"
      end
 
     config.vm.synced_folder '.', '/vagrant', disabled: true
-    config.vm.provision "WebApp" do |ansible|
+    config.vm.provision "ansible" do |ansible|
         ansible.playbook = "playbook.yml"
     end
-
 end
