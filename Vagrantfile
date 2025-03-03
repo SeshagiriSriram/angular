@@ -12,12 +12,12 @@ Vagrant.configure("2") do |config|
      config.vm.network "private_network", ip: "192.168.56.105"
 
     # VM configuration
-     config.vm.define "ubuntu2004" do |ubuntu2004|
-        ubuntu2004.vm.hostname = "ansible"
+     config.vm.define "WebApp" do |ubuntu2004|
+        ubuntu2004.vm.hostname = "WebApp"
      end
 
     config.vm.synced_folder '.', '/vagrant', disabled: true
-    config.vm.provision "ansible" do |ansible|
+    config.vm.provision "WebApp" do |ansible|
         ansible.playbook = "playbook.yml"
     end
 
