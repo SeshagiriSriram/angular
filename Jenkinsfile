@@ -34,7 +34,7 @@ stage("Restore npm packages") {
 
 	stage('build') { 
 		steps { 
-			sh 'ng build' 
+			sh 'ng build --configuration production'
 		} 
 	} 
 
@@ -49,9 +49,10 @@ stage("Restore npm packages") {
 		} 
 	}
 
-	stage ('Deploy infra') { 
+	stage ('Deploy App') { 
 		steps { 
-		sh 'sudo cp -r dist /var/www/html/app' 
+		sh 'ls -la $WORKSPACE/dist/angular-tour-of-heroes'
+		sh 'sudo cp -r $WORKSPACE/dist/angular-tour-of-heroes /var/www/html/app' 
 		} 
 	} 
  
