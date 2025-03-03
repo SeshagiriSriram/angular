@@ -27,6 +27,7 @@ stage("Restore npm packages") {
            stage('setup vagrant'){ 
 	    steps { 
 		sh 'vagrant plugin install virtualbox_WSL2' 
+                sh 'vagrant plugin install vagrant-scp'
 		} 
            } 
          } 
@@ -51,7 +52,7 @@ stage("Restore npm packages") {
 
 	stage ('Deploy App') { 
 		steps { 
-		sh 'sudo cp -r $WORKSPACE/dist/angular-tour-of-heroes/browser/* /var/www/html/app/'
+		sh 'vagrant scp  $WORKSPACE/dist/angular-tour-of-heroes/browser/* WebApp:/var/www/html/app/'
 		} 
 	} 
  
