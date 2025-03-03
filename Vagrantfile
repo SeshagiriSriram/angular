@@ -12,8 +12,8 @@ Vagrant.configure("2") do |config|
      config.vm.network "private_network", ip: "192.168.56.105"
 
     # VM configuration
-     config.vm.define "WebApp" do |ubuntu2004|
-        ubuntu2004.vm.hostname = "WebApp"
+     config.vm.define "WebApp" do |WebApp|
+        WebApp.vm.hostname = "WebApp"
      end
 
     config.vm.synced_folder '.', '/vagrant', disabled: true
