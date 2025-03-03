@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     config.vm.provider :virtualbox do |v|
         v.memory = 1024 
         v.linked_clone = true
-        v.name="webpp"
+        v.name="webapp"
     end
      config.vm.network "private_network", ip: "192.168.56.105"
 
