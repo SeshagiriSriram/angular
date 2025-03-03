@@ -51,8 +51,7 @@ stage("Restore npm packages") {
 
 	stage ('Deploy App') { 
 		steps { 
-		sh 'ls -la $WORKSPACE/dist/angular-tour-of-heroes'
-		sh 'sudo cp -r $WORKSPACE/dist/angular-tour-of-heroes /var/www/html/app' 
+		sh 'sudo cp -r $WORKSPACE/dist/angular-tour-of-heroes/browser/* /var/www/html/app/
 		} 
 	} 
  
