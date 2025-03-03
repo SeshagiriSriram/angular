@@ -22,5 +22,5 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.provision "file", source: "./dist/angular-tour-of-heroes", destination: "/tmp/app"
-    config.vm.provision "shell", inline: "sudo cp -r /tmp/app /var/www/html" 
+    config.vm.provision "shell", inline: "sudo cp -r /tmp/app/browser/index.html  /var/www/html/sample.html && sudo chmod 644 *.html" 
 end
