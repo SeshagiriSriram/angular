@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-stage("Restore npm Packages") {
+stage("Restore npm packages") {
     steps {
         writeFile file: "next-lock.cache", text: "$GIT_COMMIT"
  
@@ -17,14 +17,14 @@ stage("Restore npm Packages") {
     }
 }
 
-	 stage('Setup NPM and Vagrant Env.') {
+	 stage('setup') {
 	  parallel { 
-	   stage('npm Install') { 
+	   stage('npm install') { 
             steps {
                 sh 'npm install'
             }
             } 
-           stage('Setup Vagrant'){ 
+           stage('setup vagrant'){ 
 	    steps { 
 		sh 'vagrant plugin install virtualbox_WSL2' 
                 sh 'vagrant plugin install vagrant-scp'
@@ -33,13 +33,13 @@ stage("Restore npm Packages") {
          } 
         }
 
-	stage('Build') { 
+	stage('build') { 
 		steps { 
 			sh 'ng build --configuration production'
 		} 
 	} 
 
-	stage('Test') { 
+	stage('test') { 
 		steps { 
 			echo 'in a normal case, setup an env with Chrome browsers etc and run in ||' 
 		} 
@@ -50,7 +50,7 @@ stage("Restore npm Packages") {
 		} 
 	}
 
-	stage ('Deploy Application') { 
+	stage ('Deploy App') { 
 		steps { 
 		echo 'All done'
 		} 
