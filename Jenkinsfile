@@ -65,6 +65,23 @@ stage("Restore npm Packages") {
 		echo 'All done'
 		} 
 	} 
- 
+        stage ('Test Application') { 
+		parallel { 
+			stage('Chrome Testing') { 
+			  steps { 
+					echo 'perform chrome browser Tests' 
+				} 
+			} 
+			stage('Edge Testing') { 
+			  steps { 
+					echo 'perform Edge browser Tests' 
+				} 
+			} 
+			stage('Firefox Testing') { 
+			  steps { 
+					echo 'perform Mozilla Firefox  browser Tests' 
+				} 
+			} 
+		}  
         }
     }
