@@ -43,6 +43,7 @@ stage("Restore npm Packages") {
 		parallel { 
  	        stage('Lint Checks') { 
 		steps { 
+		   sh 'ng add @angular-eslint/schematics' 
 		   sh 'npm run lint'  
 		}
 		}
