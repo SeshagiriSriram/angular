@@ -63,7 +63,7 @@ stage("Restore npm Packages") {
 	stage ('Deploy Application') { 
 		steps { 
 		echo 'All done'
-		sh 'sshpass -p "vagrant" ssh-copy-id -o StrictHostKeyChecking=no vagrant@192.168.56.5'
+		sh 'sshpass -p "vagrant" ssh-copy-id -o StrictHostKeyChecking=no vagrant@192.168.56.105'
 		} 
 	} 
 	stage('Test Application') {
