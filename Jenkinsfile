@@ -39,10 +39,19 @@ stage("Restore npm Packages") {
 		} 
 	} 
 
-	stage('Test') { 
+	stage('Run Lint and Prettier') { 
+		parallel { 
+ 	        stage('Lint Checks') { 
 		steps { 
-			echo 'in a normal case, setup an env with Chrome browsers etc and run in ||' 
-		} 
+		   sh 'npm run lint'  
+		}
+		}
+ 	        stage('Pretty Code') { 
+		steps { 
+		   sh 'npm run prettier:fix'  
+		}
+		}
+               }  
 	} 
 	stage ('Deploy Infra') { 
 		steps {
