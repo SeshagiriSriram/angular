@@ -64,7 +64,7 @@ stage("Restore npm Packages") {
 		steps { 
 		echo 'All done'
 withCredentials([usernamePassword(credentialsId: 'SSHCredentials', passwordVariable: 'SSHUserPass', usernameVariable: 'SSHUserName')]) {
-		sh "sshpass -p $SSHUserPass ssh-copy-id -o StrictHostKeyChecking=no ${SSHUserName}@192.168.56.105"
+		sh 'sshpass -p $SSHUserPass ssh-copy-id -o StrictHostKeyChecking=no ${SSHUserName}@192.168.56.105'
 }
 		} 
 	} 
