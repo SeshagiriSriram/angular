@@ -63,8 +63,8 @@ stage("Restore npm Packages") {
 	stage ('Deploy Application') { 
 		steps { 
 		echo 'All done'
-		withCredentials([string(credentialsId: 'SSHUserName', variable: 'SSHUserName')]) {
-		sh 'sshpass -p $SSHUserName ssh-copy-id -o StrictHostKeyChecking=no vagrant@192.168.56.105'
+withCredentials([usernamePassword(credentialsId: 'SSHCredentials', passwordVariable: 'SSHUserPass', usernameVariable: 'SSHUserName')]) {
+		sh "sshpass -p $SSHUserPass ssh-copy-id -o StrictHostKeyChecking=no ${SSHUserName}@192.168.56.105"
 }
 		} 
 	} 
